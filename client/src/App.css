@@ -1,0 +1,31 @@
+/**
+ * ============================================================================
+ * APPLICATION SPECIFIC STYLES (App.css)
+ * ============================================================================
+ * Purpose:
+ *   Contains layout container utilities, glassmorphism card overlays,
+ *   and transitions specific to the 1Fi Marketplace application.
+ * ============================================================================
+ */
+
+/* Responsive mobile-first container padding to account for fixed bottom nav on mobile */
+.app-viewport-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5rem; /* Space for mobile bottom navigation bar */
+}
+
+@media (min-width: 768px) {
+  .app-viewport-container {
+    padding-bottom: 0; /* Remove bottom nav padding on desktop */
+  }
+}
+
+/* Glassmorphism subtle overlay */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}

@@ -1,0 +1,68 @@
+/**
+ * ============================================================================
+ * 1FI GLOBAL STYLESHEET (index.css)
+ * ============================================================================
+ * Purpose:
+ *   Injects Tailwind base, components, and utilities layers.
+ *   Enforces Plus Jakarta Sans typography, custom smooth scrollbars,
+ *   focus rings, and 1Fi fintech component styles.
+ * ============================================================================
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Enforce smooth scrolling throughout viewport */
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F1F5F9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+  }
+}
+
+@layer components {
+  /* 1Fi Card Container */
+  .fintech-card {
+    @apply bg-white rounded-3xl border border-slate-100 shadow-card hover:shadow-card-hover transition-all duration-300;
+  }
+
+  /* No-Cost EMI Badge */
+  .badge-nocost {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60;
+  }
+
+  /* 1Fi Promotional Pill Badge */
+  .badge-promo {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-purple-50 text-brand-700 border border-purple-200/60;
+  }
+}
