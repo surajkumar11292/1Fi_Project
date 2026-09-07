@@ -114,6 +114,16 @@ if (NODE_ENV === 'development') {
 // API ROUTES
 // ----------------------------------------------------------------------------
 
+// Root endpoint for platform health checks (Render, Railway, Uptime monitors)
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'online',
+    service: '1Fi Marketplace API',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Health check endpoint for uptime monitoring and load balancers
 app.get('/api/health', (req, res) => {
   res.status(200).json({
