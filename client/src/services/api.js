@@ -22,12 +22,19 @@
 // Import Axios HTTP client library
 import axios from 'axios';
 
+// Normalize Base URL to ensure consistent /api routing across environments
+const getBaseUrl = () => {
+  const envUrl = (import.meta.env.VITE_API_BASE_URL || '/api').trim();
+  if (envUrl === '/api') return '/api';
+  return envUrl.endsWith('/api') ? envUrl : `${envUrl.replace(/\/+$/, '')}/api`;
+};
+
 /**
  * Create a pre-configured Axios instance.
  */
 const apiClient = axios.create({
   // Base URL for all relative request paths
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: getBaseUrl(),
   // Timeout in milliseconds before request fails (10 seconds)
   timeout: 10000,
   // Standard headers sent with every request

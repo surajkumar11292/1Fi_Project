@@ -125,7 +125,7 @@ app.get('/', (req, res) => {
 });
 
 // Health check endpoint for uptime monitoring and load balancers
-app.get('/api/health', (req, res) => {
+app.get(['/api/health', '/health'], (req, res) => {
   res.status(200).json({
     status: 'OK',
     service: '1Fi Marketplace API',
@@ -135,8 +135,9 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Mount product catalog and fintech EMI routes
+// Mount product catalog and fintech EMI routes (support both /api/products and /products)
 app.use('/api/products', productRoutes);
+app.use('/products', productRoutes);
 
 // ----------------------------------------------------------------------------
 // ERROR HANDLING PIPELINE
