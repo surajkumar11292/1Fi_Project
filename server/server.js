@@ -152,13 +152,15 @@ app.use(errorHandler);
 // SERVER INITIALIZATION
 // ----------------------------------------------------------------------------
 
-// Bind HTTP listener to localhost (127.0.0.1) for secure development
-const server = app.listen(PORT, '127.0.0.1', () => {
+// Bind HTTP listener to 0.0.0.0 to allow container port binding on cloud platforms (Render, Railway, etc.)
+const HOST = process.env.HOST || '0.0.0.0';
+const server = app.listen(PORT, HOST, () => {
   console.log(`\n======================================================`);
   console.log(` 1Fi Marketplace API Server Running!`);
   console.log(` Environment : ${NODE_ENV}`);
-  console.log(` Local URL   : http://127.0.0.1:${PORT}`);
-  console.log(` Health Check: http://127.0.0.1:${PORT}/api/health`);
+  console.log(` Host        : ${HOST}`);
+  console.log(` Port        : ${PORT}`);
+  console.log(` Health Check: http://${HOST}:${PORT}/api/health`);
   console.log(`======================================================\n`);
 });
 
