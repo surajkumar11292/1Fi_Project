@@ -33,6 +33,11 @@ export const MobileBottomNav = () => {
   // Shop is active when on main catalog or product detail page
   const isShopActive = location.pathname === '/' || location.pathname.startsWith('/product');
 
+  // When browsing a specific product, hide generic navigation to prioritize checkout CTA
+  if (location.pathname.startsWith('/product')) {
+    return null;
+  }
+
   return (
     <div className="fixed bottom-3 left-4 right-4 z-50 md:hidden flex justify-center pointer-events-none">
       <nav

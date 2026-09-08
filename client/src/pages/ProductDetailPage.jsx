@@ -253,49 +253,58 @@ export const ProductDetailPage = () => {
             currentPrice={currentPrice}
           />
 
-          {/* Desktop Inline Action Button */}
-          <div className="hidden lg:block mt-6">
+          {/* Action Button - Available on all screen sizes */}
+          <div className="mt-6 mb-4">
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="w-full py-4 px-6 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-base shadow-lg shadow-brand-600/30 flex items-center justify-between transition-all duration-200 hover:scale-[1.01]"
+              className="w-full py-3.5 sm:py-4 px-5 sm:px-6 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-brand-600/30 flex items-center justify-between transition-all duration-200 hover:scale-[1.01]"
             >
               <div className="text-left">
-                <span className="text-xs text-purple-200 block uppercase tracking-wider font-semibold">
+                <span className="text-[10px] sm:text-xs text-purple-200 block uppercase tracking-wider font-semibold">
                   {selectedEmiPlan ? `${selectedEmiPlan.tenureMonths} Months Financing Plan` : 'Instant Checkout'}
                 </span>
-                <span className="text-xl font-black">
+                <span className="text-base sm:text-xl font-black">
                   Pay ₹{dynamicMonthlyInstallment.toLocaleString('en-IN')}/month
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 bg-white/20 px-4 py-2 rounded-xl text-sm font-bold">
-                <span>Proceed to EMI Checkout</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold">
+                <span>Proceed to EMI</span>
                 <ArrowRight className="w-4 h-4" />
               </div>
             </button>
           </div>
 
-          {/* Mobile Floating Bottom Bar - positioned nicely above the bottom dock */}
-          <div className="lg:hidden fixed bottom-18 left-3 right-3 z-40">
+          {/* Mobile Sticky Bottom Purchase Bar (Persistent high-conversion CTA) */}
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-4 py-3 shadow-[0_-4px_25px_rgba(0,0,0,0.1)] flex items-center justify-between gap-3">
+            <div className="flex flex-col min-w-0">
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-lg font-black text-slate-900 tracking-tight">
+                  ₹{currentPrice.toLocaleString('en-IN')}
+                </span>
+                {currentMrp > currentPrice && (
+                  <span className="text-[11px] font-bold text-emerald-600">
+                    {Math.round(((currentMrp - currentPrice) / currentMrp) * 100)}% off
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-1 text-[11px] text-brand-700 font-bold">
+                <Sparkles className="w-3 h-3 text-brand-600 shrink-0" />
+                <span>₹{dynamicMonthlyInstallment.toLocaleString('en-IN')}/mo</span>
+                <span className="text-[10px] text-slate-400 font-normal">
+                  ({selectedEmiPlan?.tenureMonths || 6}m)
+                </span>
+              </div>
+            </div>
+
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 text-white font-extrabold shadow-[0_8px_30px_rgba(108,43,217,0.4)] flex items-center justify-between border border-purple-400/30"
+              className="flex-1 max-w-[190px] py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 active:scale-[0.98] text-white font-black text-xs sm:text-sm shadow-md shadow-brand-600/30 flex items-center justify-center gap-1.5 transition-all"
             >
-              <div className="text-left">
-                <span className="text-[10px] text-purple-200 uppercase tracking-wider block font-bold">
-                  {selectedEmiPlan?.tenureMonths || 6} Months EMI Plan
-                </span>
-                <span className="text-sm font-black">
-                  Pay ₹{dynamicMonthlyInstallment.toLocaleString('en-IN')}/month
-                </span>
-              </div>
-
-              <div className="flex items-center gap-1 bg-white/20 px-3 py-1.5 rounded-xl text-xs font-bold">
-                <span>Proceed</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
+              <span>Buy on EMI</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
