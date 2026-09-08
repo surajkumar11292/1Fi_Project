@@ -37,8 +37,8 @@ export const TabSwitcher = ({ activeTab, onTabChange }) => {
   ];
 
   return (
-    <div className="w-full flex justify-center mb-6">
-      <div className="bg-[#F0EEF6] p-1 sm:p-1.5 rounded-full border border-slate-200/60 grid grid-cols-3 w-full max-w-lg shadow-inner">
+    <div className="w-full flex justify-center mb-6 px-2 sm:px-0">
+      <div className="bg-[#F0EEF6] p-1 sm:p-1.5 rounded-full border border-slate-200/60 grid grid-cols-3 w-full max-w-md sm:max-w-[700px] shadow-inner">
         {tabs.map((tab) => {
           const IconComponent = tab.icon;
           const isActive = activeTab === tab.id;
@@ -47,15 +47,15 @@ export const TabSwitcher = ({ activeTab, onTabChange }) => {
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`flex flex-col items-center justify-center px-1 sm:px-4 py-2 sm:py-2.5 rounded-full transition-all duration-200 relative ${
+              className={`flex flex-col items-center justify-center px-1 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 relative ${
                 isActive
                   ? 'bg-white text-brand-600 font-bold shadow-sm'
                   : 'text-slate-500 hover:text-slate-800 font-semibold'
               }`}
             >
-              <div className="flex items-center justify-center gap-1 sm:gap-1.5 w-full">
+              <div className="flex items-center justify-center gap-1 sm:gap-2 w-full">
                 <IconComponent className={`w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 ${isActive ? 'text-brand-600' : 'text-slate-400'}`} />
-                <span className="text-[11px] sm:text-xs md:text-sm truncate">
+                <span className="text-[11px] sm:text-xs md:text-sm truncate sm:overflow-visible sm:whitespace-nowrap">
                   {tab.id === 'marketplace' ? (
                     <>
                       <span className="hidden sm:inline">1Fi </span>Marketplace
@@ -65,7 +65,7 @@ export const TabSwitcher = ({ activeTab, onTabChange }) => {
                   )}
                 </span>
                 {tab.badge && (
-                  <span className="hidden md:inline-block px-1.5 py-0.2 rounded-full text-[9px] font-extrabold bg-brand-50 text-brand-700 border border-brand-200/70">
+                  <span className="hidden md:inline-block px-1.5 py-0.2 rounded-full text-[9px] font-extrabold bg-brand-50 text-brand-700 border border-brand-200/70 shrink-0">
                     {tab.badge}
                   </span>
                 )}
